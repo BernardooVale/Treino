@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treino/listviewbuilderteste.dart';
 
 import 'barra_navegacao.dart';
 
@@ -39,7 +40,7 @@ class _InicioState extends State<Inicio> {
       resizeToAvoidBottomInset: false,
       extendBody: true,
       body: pagina == 0 ? Column()
-            : pagina == 1 ? Column()
+            : pagina == 1 ? BuilderTeste()
             : Column(),
       bottomNavigationBar: BarraNavegacao(mudancaPagina: _mudancaPagina),
     );

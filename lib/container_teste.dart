@@ -16,19 +16,22 @@ class _ContainerTesteState extends State<ContainerTeste> {
         child: Column(
           children: [
             Container(
-              height: 100,
+              height: 75,
               decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.orange,
+                ),
                 borderRadius: BorderRadius.circular(16),
-                color: Colors.red,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Biceps rosca scott (maquina)"
+                        "Biceps rosca scott (maquina)",
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
@@ -38,34 +41,17 @@ class _ContainerTesteState extends State<ContainerTeste> {
                       )
                     ],
                   ),
-                  IconButton(
-                      onPressed: (){},
-                      icon: Icon(
-                        Icons.check_box_rounded,
-                      ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
+                  Row(
                     children: [
-                      Text(
-                          "Biceps rosca scott (maquina)"
+                      IconButton(onPressed: (){}, icon: Icon(Icons.edit_rounded)
                       ),
-                      Text(
-                        "12 rep  30kg  3 series",
-                      )
+                      IconButton(
+                          onPressed: (){},
+                          icon: Icon(
+                            Icons.check_box_rounded,
+                          ),
+                      ),
                     ],
-                  ),
-                  IconButton(
-                    onPressed: (){},
-                    icon: Icon(
-                      Icons.check_box_rounded,
-                    ),
                   )
                 ],
               ),
