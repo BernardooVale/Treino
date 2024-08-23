@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:treino/listviewbuilderteste.dart';
-
+import 'exercicios.dart';
 import 'barra_navegacao.dart';
+import 'construtor.dart';
 
 class Inicio extends StatefulWidget {
-  const Inicio({Key? key}) : super(key: key);
+  final Exercicios exercicios;
+
+  const Inicio({Key? key, required this.exercicios}) : super(key: key);
 
   @override
-
   State<Inicio> createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
-
   int pagina = 0;
 
   void _mudancaPagina(int index) {
@@ -39,9 +39,11 @@ class _InicioState extends State<Inicio> {
       ),
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      body: pagina == 0 ? Column()
-            : pagina == 1 ? BuilderTeste()
-            : Column(),
+      body: pagina == 0 ?
+        Construtor(exercicios: widget.exercicios, dia: 0) :
+        pagina == 1 ?
+          Construtor(exercicios: widget.exercicios, dia: 1) :
+          Construtor(exercicios: widget.exercicios, dia: 2),
       bottomNavigationBar: BarraNavegacao(mudancaPagina: _mudancaPagina),
     );
   }
