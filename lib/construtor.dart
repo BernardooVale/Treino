@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'exercicios.dart';
+import 'EditarExercicio.dart';
 
 class Construtor extends StatefulWidget {
   final int dia;
@@ -28,7 +29,7 @@ class _ConstrutorState extends State<Construtor> {
   Widget build(BuildContext context) {
 
     var exerciciosLista = widget.dia == 0 ? widget.exercicios.tricepsOmbroPeito : widget.dia == 1 ? widget.exercicios.bracoCostas : widget.exercicios.perna;
-
+    String categoria = widget.dia == 0 ? "Triceps/Ombro/Peito" : widget.dia == 1 ? "Braco/Costas" : "Perna";
 
     return ListView.builder(
         physics: BouncingScrollPhysics(),
@@ -89,10 +90,29 @@ class _ConstrutorState extends State<Construtor> {
                         Row(
                           children: [
                             IconButton(
-                                color: selecionado ? Colors.black38 : Colors.white70,
-                                onPressed: () {},
-                                icon: Icon(Icons.edit_rounded)
+                              color: selecionado ? Colors.black38 : Colors.white70,
+                              onPressed: () async {
+                                final resultado = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EditarExercicio(
+                                      exercicio: exercicio.toJson(), // Converte para Map<String, dynamic>
+                                      categoria: categoria, // Passa a categoria correspondente
+                                      index: index, // Passa o índice do exercício na lista
+                                    ),
+                                  ),
+                                );
+
+                                // Atualiza a lista de exercícios caso a edição seja salva
+                                if (resultado != null) {
+                                  setState(() {
+                                    exerciciosLista![index] = Exercicio.fromJson(resultado);
+                                  });
+                                }
+                              },
+                              icon: Icon(Icons.edit_rounded),
                             ),
+
                             IconButton(
                               color: selecionado ? Colors.black38 : Colors.white70,
                               onPressed: () {
